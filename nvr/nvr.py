@@ -56,15 +56,15 @@ class Nvr():
             pass
 
     def try_attach(self, args, nvr, options, arguments):
-            for i in range(10):
-                self.attach()
-                if self.server:
-                    self.started_new_process = True
-                    return main2(nvr, options, arguments)
-                time.sleep(0.2)
-            print('[!] Unable to attach to the new nvim process. Is `{}` working?'
-                    .format(" ".join(args)))
-            sys.exit(1)
+        for i in range(10):
+            time.sleep(1)
+            self.attach()
+            if self.server:
+                self.started_new_process = True
+                return main2(nvr, options, arguments)
+        print('[!] Unable to attach to the new nvim process. Is `{}` working?'
+                .format(" ".join(args)))
+        sys.exit(1)
 
     def execute_new_nvim_process(self, silent, nvr, options, arguments):
         if not silent:
